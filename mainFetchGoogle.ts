@@ -7,14 +7,71 @@ import { Page, TimeoutError } from "puppeteer";
 import readline from "readline";
 import path from "path";
 // import XLSX from "xlsx";
-
+const IstanbulArray = [
+  "Adalar",
+  "Arnavutköy",
+  "Ataşehir",
+  "Avcılar",
+  "Bağcılar",
+  "Bahçelievler",
+  "Bakırköy",
+  "Başakşehir",
+  "Bayrampaşa",
+  "Beşiktaş",
+  "Beykoz",
+  "Beylikdüzü",
+  "Beyoğlu",
+  "Büyükçekmece",
+  "Çatalca",
+  "Çekmeköy",
+  "Esenler",
+  "Esenyurt",
+  "Eyüpsultan",
+  "Fatih",
+  "Gaziosmanpaşa",
+  "Güngören",
+  "Kadıköy",
+  "Kağıthane",
+  "Kartal",
+  "Küçükçekmece",
+  "Maltepe", //26
+  "Pendik",
+  "Sancaktepe",
+  "Sarıyer",
+  "Silivri",
+  "Sultanbeyli",
+  "Sultangazi",
+  "Şile",
+  "Şişli",
+  "Tuzla",
+  "Ümraniye",
+  "Üsküdar",
+  "Zeytinburnu",
+];
 // const filePath = path.join(__dirname, "bruh.txt");
 const filePath = path.join(__dirname, 'allPlaces.txt');
 const fileContent = fs.readFileSync(filePath, 'utf8');
 const lines = fileContent.split('\n');
-const firstWordArray = lines.map((item) => {
+const firstWordArray = lines.splice(58).map((item) => {
   const fields = item.split(/\s+/)
-  return fields[0]
+  if(IstanbulArray.includes(fields[1])) {
+    return `${fields[0]} ${fields[1]}`
+  }
+  if(IstanbulArray.includes(fields[2])) {
+    return `${fields[0]} ${fields[1]} ${fields[2]}`
+  }
+  if(IstanbulArray.includes(fields[3])) {
+    return `${fields[0]} ${fields[1]} ${fields[2]} ${fields[3]}`
+  }
+  if(IstanbulArray.includes(fields[4])) {
+    return `${fields[0]} ${fields[1]} ${fields[2]} ${fields[3]} ${fields[4]}`
+  }
+  
+  if(IstanbulArray.includes(fields[5])) {
+    return `${fields[0]} ${fields[1]} ${fields[2]} ${fields[3]} ${fields[4]} ${fields[5]}`
+  }
+  
+  
 })
 console.log("HOW MANY CITIES: " + firstWordArray.length)
 
@@ -28,47 +85,7 @@ console.log("HOW MANY CITIES: " + firstWordArray.length)
 
 // const firstNames = <any>[];
 
-// const IstanbulArray = [
-//   "Adalar",
-//   "Arnavutköy",
-//   "Ataşehir",
-//   "Avcılar",
-//   "Bağcılar",
-//   "Bahçelievler",
-//   "Bakırköy",
-//   "Başakşehir",
-//   "Bayrampaşa",
-//   "Beşiktaş",
-//   "Beykoz",
-//   "Beylikdüzü",
-//   "Beyoğlu",
-//   "Büyükçekmece",
-//   "Çatalca",
-//   "Çekmeköy",
-//   "Esenler",
-//   "Esenyurt",
-//   "Eyüpsultan",
-//   "Fatih",
-//   "Gaziosmanpaşa",
-//   "Güngören",
-//   "Kadıköy",
-//   "Kağıthane",
-//   "Kartal",
-//   "Küçükçekmece",
-//   "Maltepe", //26
-//   "Pendik",
-//   "Sancaktepe",
-//   "Sarıyer",
-//   "Silivri",
-//   "Sultanbeyli",
-//   "Sultangazi",
-//   "Şile",
-//   "Şişli",
-//   "Tuzla",
-//   "Ümraniye",
-//   "Üsküdar",
-//   "Zeytinburnu",
-// ];
+
 
 // // Read the file line by line
 // // rl.on("line", (line: string) => {
@@ -136,6 +153,7 @@ async function getAllResults() {
   const allData = [] as any;
 
   for (let i = 0; i < firstWordArray.length; i++) {
+    
     await page.goto(
       `https://www.google.com/search?sca_esv=a2de1c70e4a64dfa&tbs=lf:1,lf_ui:9&tbm=lcl&sxsrf=ACQVn0_D0U12xt6RZCefQu8XKWRgAvSJlA:1709814466766&q=${firstWordArray[i]}+restoranlar&rflfq=1&num=10&sa=X&ved=2ahUKEwjmjbGfk-KEAxWHSvEDHYnVCZ8QjGp6BAgYEAE&biw=1536&bih=695&dpr=1.25#rlfi=hd:;si:;mv:[[40.879543999999996,29.136159899999996],[40.8468051,29.097792999999996]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:9`,
       {
@@ -512,6 +530,7 @@ async function getAllResults() {
               openDates: openDatesData || null, // Add openDatesData array directly
             };
             allData.push(allOfTheData);
+            console.log(firstWordArray[i])
             console.log(allOfTheData);
   
             await axios
