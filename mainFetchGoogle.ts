@@ -153,7 +153,6 @@ async function getAllResults() {
   const allData = [] as any;
 
   for (let i = 0; i < firstWordArray.length; i++) {
-    
     await page.goto(
       `https://www.google.com/search?sca_esv=a2de1c70e4a64dfa&tbs=lf:1,lf_ui:9&tbm=lcl&sxsrf=ACQVn0_D0U12xt6RZCefQu8XKWRgAvSJlA:1709814466766&q=${firstWordArray[i]}+restoranlar&rflfq=1&num=10&sa=X&ved=2ahUKEwjmjbGfk-KEAxWHSvEDHYnVCZ8QjGp6BAgYEAE&biw=1536&bih=695&dpr=1.25#rlfi=hd:;si:;mv:[[40.879543999999996,29.136159899999996],[40.8468051,29.097792999999996]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:9`,
       {
