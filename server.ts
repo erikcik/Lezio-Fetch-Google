@@ -32,7 +32,7 @@ app.post("/", async (req, res) => {
   let lngRestaurant;
   const fetchFilteredRestaurant = async (searchInput: string) => {
     if (searchInput) {
-      const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchInput}&types=geocode&language=tr&region=tr&key=AIzaSyDouV7VN1dE1QP-iHEmN_UUCTJ2LCItVkQ`;
+      const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchInput}&types=geocode&language=tr&region=tr&key=AIzaSyBsII7ydj7aLdU2eQhVz2vvzNmf7fcwRc0`;
 
       try {
         const response = await fetch(apiUrl);
@@ -64,7 +64,7 @@ app.post("/", async (req, res) => {
   };
   const handleLocationSelection = async (placeId: string, name: string) => {
     if (placeId) {
-      const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=AIzaSyDouV7VN1dE1QP-iHEmN_UUCTJ2LCItVkQ`;
+      const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=AIzaSyBsII7ydj7aLdU2eQhVz2vvzNmf7fcwRc0`;
       try {
         const response = await fetch(placeDetailsUrl);
         const data = await response.json();
